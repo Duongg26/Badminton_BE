@@ -12,5 +12,7 @@ namespace Badminton_BE.Data
 
        public DbSet<Account> Accounts { get; set; }
         public DbSet<Yard> Yards { get; set; }
+        public DbSet<ReviewYard> Reviews { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
     }
 }

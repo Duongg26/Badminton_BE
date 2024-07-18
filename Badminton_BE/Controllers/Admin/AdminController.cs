@@ -7,10 +7,10 @@ namespace Badminton_BE.Controllers.Admin
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AdminController : ControllerBase
     {
        private readonly DataContext _context;
-        public AccountController(DataContext context)
+        public AdminController(DataContext context)
         {
             _context = context;
         }
@@ -36,7 +36,7 @@ namespace Badminton_BE.Controllers.Admin
             try
             {
                 var acc = _context.Accounts.FirstOrDefault(a => a.UName == model.UName && a.Pass == model.Pass);
-                if (acc != null)
+                if (acc != null&& acc.Role==1)
                 {
                    return BadRequest("Thành công");
                     
@@ -54,18 +54,20 @@ namespace Badminton_BE.Controllers.Admin
             var acc = _context.Accounts.Find(id);
             if (acc == null)
             {
-                return NotFound("Không tìm thâys");
+                return NotFound("Không tìm thấy tài khoản");
             }
-            
-            model.UName = acc.UName;
-           model.Status = acc.Status;
-            model.Name= acc.Name;
-            model.Role = acc.Role;
-            model.Addr = acc.Addr;
-            _context.SaveChanges();
-            return BadRequest("Đã cập nhật");
 
+            acc.UName = model.UName;
+            acc.Status = model.Status;
+            acc.Name = model.Name;
+            acc.Role = model.Role;
+            acc.Addr = model.Addr;
+
+            _context.SaveChanges();
+
+            return Ok("Đã cập nhật thành công");
         }
+
         [HttpDelete("/DeleteById{id}")]
         public IActionResult DeleteById(int id)
         {
