@@ -7,7 +7,7 @@ namespace Badminton_BE.Models.ViewModel
         [Required]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string YardName { get; set; }
         [Required]
         public string YardDescription { get; set; }
         [Required]

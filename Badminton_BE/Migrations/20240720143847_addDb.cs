@@ -5,14 +5,44 @@
 namespace Badminton_BE.Migrations
 {
     /// <inheritdoc />
-    public partial class AddNewDb : Migration
+    public partial class addDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "IdYard",
-                table: "Yards");
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Pass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Addr = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Yards",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    YardName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    YardDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Yards", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Invoices",
@@ -20,8 +50,6 @@ namespace Badminton_BE.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUser = table.Column<int>(type: "int", nullable: false),
-                    IdYard = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NameYard = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
@@ -52,7 +80,6 @@ namespace Badminton_BE.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdYard = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     YardId = table.Column<int>(type: "int", nullable: false)
@@ -93,12 +120,11 @@ namespace Badminton_BE.Migrations
             migrationBuilder.DropTable(
                 name: "Reviews");
 
-            migrationBuilder.AddColumn<int>(
-                name: "IdYard",
-                table: "Yards",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+            migrationBuilder.DropTable(
+                name: "Accounts");
+
+            migrationBuilder.DropTable(
+                name: "Yards");
         }
     }
 }

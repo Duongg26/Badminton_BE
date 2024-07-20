@@ -14,13 +14,13 @@ namespace Badminton_BE.Controllers.Admin
         {
             _context = context;
         }
-        [HttpGet("/GetAll")]
+        [HttpGet("/GetAllAcc")]
         public IActionResult GetAll()
         {
             var Acc = _context.Accounts.ToList();
             return Ok( Acc );
         }
-        [HttpGet("/GetById{id}")]
+        [HttpGet("/GetAccById{id}")]
         public IActionResult GetById(int id) {
             var Acc = _context.Accounts.Find(id);
             if (Acc == null) {
@@ -38,7 +38,7 @@ namespace Badminton_BE.Controllers.Admin
                 var acc = _context.Accounts.FirstOrDefault(a => a.UName == model.UName && a.Pass == model.Pass);
                 if (acc != null&& acc.Role==1)
                 {
-                   return BadRequest("Thành công");
+                   return Ok("Thành công");
                     
                 }
                 return BadRequest("Login fail");
@@ -48,7 +48,7 @@ namespace Badminton_BE.Controllers.Admin
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("/UpdateById")]
+        [HttpPost("/UpdateAccById")]
         public IActionResult UpdateById(int id, AccountViewModel model)
         {
             var acc = _context.Accounts.Find(id);
@@ -68,7 +68,7 @@ namespace Badminton_BE.Controllers.Admin
             return Ok("Đã cập nhật thành công");
         }
 
-        [HttpDelete("/DeleteById{id}")]
+        [HttpDelete("/DeleteAccById{id}")]
         public IActionResult DeleteById(int id)
         {
             var acc = _context.Accounts.Find(id);

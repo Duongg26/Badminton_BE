@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Badminton_BE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240718094832_AddNewDb")]
-    partial class AddNewDb
+    [Migration("20240720143847_addDb")]
+    partial class addDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,12 +70,6 @@ namespace Badminton_BE.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdYard")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -114,9 +108,6 @@ namespace Badminton_BE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdYard")
-                        .HasColumnType("int");
-
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -139,6 +130,9 @@ namespace Badminton_BE.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("YardDescription")
