@@ -9,5 +9,6 @@
         public string Addr { get; set; }
         public int Role { get; set; }
         public int Status { get; set; }
+        public string Pass2 { get; set; }
     }
 }

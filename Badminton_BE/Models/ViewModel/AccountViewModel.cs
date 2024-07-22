@@ -7,11 +7,15 @@ namespace Badminton_BE.Models.ViewModel
         [Required]
         public String Name { get; set; }
         [Required] 
+        public String Pass { get; set; }
+        [Required]
         public string UName { get; set; }
         [Required]
         public string Addr {  get; set; }
         [Required]
         public int Role { get; set; }
+        [Required]
+        public string Pass2 {  get; set; }
         [Required]
         public int Status { get; set; }
     }
